@@ -53,16 +53,25 @@ void SortArray(int[] array) // Взял немного допиленный ва
     }
 }
 
-int RepeatedNumCalculate(int[] array)
+string RepeatedNumCalculate(int[] array)
 {
+    string result = string.Empty;
     int counter = array[0] == array[1] ? 1 : 0;
+    int eachNumQty = counter == 1 ? 1 : 0;
 
     for (int i = 1; i < array.Length - 1; i++)
     {
         if (array[i - 1] != array[i] && array[i] == array[i + 1])
             counter++;
+        if (array[i] == array[i + 1])
+            eachNumQty++;
+        else
+        {
+            result += $"Число {array[i]} повторяется {eachNumQty} раз.\n"
+            eachNumQty = 0;
+        }
     }
-    return counter;
+    return $"В данном массиве числа повторяются {counter} раз.\n\n" + result;
 }
 
 int size = InputNum("Введите размер массива: ");
@@ -76,4 +85,4 @@ Console.WriteLine("\nОстортированный массив:\n");
 SortArray(array);
 // Array.Sort(array);  // Можно воспользоваться встроенной функцией сортировки массива.
 PrintArray(array);
-Console.WriteLine($"В данном массиве числа повторяются {RepeatedNumCalculate(array)} раз.");
+Console.WriteLine(RepeatedNumCalculate(array));
