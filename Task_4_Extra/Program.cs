@@ -57,18 +57,19 @@ string RepeatedNumCalculate(int[] array)
 {
     string result = string.Empty;
     int counter = array[0] == array[1] ? 1 : 0;
-    int eachNumQty = counter == 1 ? 1 : 0;
+    int eachNumQty = counter == 1 ? 2 : 1;
 
     for (int i = 1; i < array.Length - 1; i++)
     {
         if (array[i - 1] != array[i] && array[i] == array[i + 1])
             counter++;
+            
         if (array[i] == array[i + 1])
             eachNumQty++;
-        else
+        else if (eachNumQty != 1)
         {
-            result += $"Число {array[i]} повторяется {eachNumQty} раз.\n"
-            eachNumQty = 0;
+            result += $"Число {array[i]} повторяется {eachNumQty} раз.\n";
+            eachNumQty = 1;
         }
     }
     return $"В данном массиве числа повторяются {counter} раз.\n\n" + result;
@@ -79,10 +80,10 @@ int minValue = InputNum("Введите минимальное значение 
 int maxValue = InputNum("Введите максимальное значение элемента: ");
 int[] array = CreateArray(size);
 FillArray(array, minValue, maxValue);
-Console.WriteLine("Исходный массив:\n");
+Console.WriteLine("\nИсходный массив:\n");
 PrintArray(array);
 Console.WriteLine("\nОстортированный массив:\n");
 SortArray(array);
 // Array.Sort(array);  // Можно воспользоваться встроенной функцией сортировки массива.
 PrintArray(array);
-Console.WriteLine(RepeatedNumCalculate(array));
+Console.WriteLine("\n" + RepeatedNumCalculate(array));
