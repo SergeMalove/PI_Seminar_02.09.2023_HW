@@ -55,15 +55,14 @@ void SortArray(int[] array) // Взял немного допиленный ва
 
 int RepeatedNumCalculate(int[] array)
 {
-    int result = array[0] == array[1] ? 1 : 0;
-    int temp = array[0];
+    int counter = array[0] == array[1] ? 1 : 0;
 
     for (int i = 1; i < array.Length - 1; i++)
     {
         if (array[i - 1] != array[i] && array[i] == array[i + 1])
-            result++;
+            counter++;
     }
-    return result;
+    return counter;
 }
 
 int size = InputNum("Введите размер массива: ");
